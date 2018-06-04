@@ -14,6 +14,7 @@ func loop() {
 		shader.SetUniformAttr(0, elapsed)
 		shader.SetUniformAttr(1, resolution)
 		shader.SetUniformAttr(2, mouse)
+		shader.SetUniformAttr(3, playerpositions)
 		texture.Begin()
 		slice.Begin()
 		slice.Draw()

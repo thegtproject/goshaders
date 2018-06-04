@@ -28,14 +28,19 @@ var (
 			Name: "u_mouse",
 			Type: glhf.Vec4,
 		},
+		glhf.Attr{
+			Name: "u_players",
+			Type: glhf.Vec4,
+		},
 	}
 
 	fwidth, fheight   = float32(width), float32(height)
 	activeShaderIndex int
 
-	resolution = mgl32.Vec2{fwidth, fheight}
-	mouse      = mgl32.Vec4{}
-	elapsed    float32
+	resolution      = mgl32.Vec2{fwidth, fheight}
+	mouse           = mgl32.Vec4{}
+	elapsed         float32
+	playerpositions = mgl32.Vec4{-0.1, -0.1, 0.1, 0.1}
 
 	start = time.Now()
 

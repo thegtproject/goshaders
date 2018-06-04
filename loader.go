@@ -17,7 +17,7 @@ type (
 		name     string
 		filedata []byte
 		filename string
-		sb       strings.Builder
+		data     string
 		obj      *glhf.Shader
 	}
 )
@@ -74,9 +74,7 @@ func forEachFile(dir string, fn func(filename string) error, pattern ...string) 
 }
 
 func (se *shaderEntry) preprocess() {
-	se.sb.Reset()
-	se.sb.WriteString(shaderStringPrefix)
-	se.sb.Write(se.filedata)
+	se.data = shaderStringPrefix + string(se.filedata)
 }
 
 func (se *shaderEntry) reload() error {
@@ -101,7 +99,7 @@ func (se *shaderEntry) compile() {
 		}
 	}()
 	var err error
-	fragmentShader := se.sb.String()
+	fragmentShader := se.data
 	se.obj, err = glhf.NewShader(vertexFormat, uniformsFormat, vertexShader, fragmentShader)
 	if err != nil {
 		panic(err)
